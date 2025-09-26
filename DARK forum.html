@@ -1,0 +1,2330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XploitNewbie Forum - Ethical Hacking Education</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --main-bg-color: #161b22;
+            --border-color: #30363d;
+            --text-color-light: #f0f6fc;
+            --text-color-primary: #c9d1d9;
+            --text-color-secondary: #8b949e;
+            --accent-color: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-red: #da3633;
+            --accent-orange: #f78166;
+            --header-link-hover: #1f6feb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        .forum-header {
+            background-color: var(--main-bg-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-top {
+            background-color: var(--bg-color);
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+
+        .header-top .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-main {
+            padding: 20px 0;
+        }
+
+        .logo-section h1 {
+            color: var(--text-color-light);
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .logo-section h1 i {
+            color: var(--accent-orange);
+        }
+
+        .logo-section p {
+            color: var(--text-color-secondary);
+            font-size: 14px;
+        }
+
+        .main-nav {
+            margin-top: 15px;
+            background-color: #1f242c;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .main-nav li a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-color-primary);
+            border-right: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .main-nav li a:hover, .main-nav li a.active {
+            background-color: var(--header-link-hover);
+            color: white;
+        }
+
+        .main-nav li:last-child a {
+            border-right: none;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 15px 0;
+            font-size: 14px;
+            color: var(--text-color-secondary);
+        }
+
+        /* Advanced Search */
+        .advanced-search {
+            background: var(--main-bg-color);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .search-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 12px;
+            background: #0d1117;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            color: var(--text-color-primary);
+        }
+
+        .search-filters {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .search-filters select {
+            padding: 10px;
+            background: #0d1117;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            color: var(--text-color-primary);
+            width: 100%;
+        }
+
+        .notification-bell {
+            position: relative;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .notification-count {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent-red);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Forum Content */
+        .forum-content {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 300px;
+        }
+
+        /* New Post Form */
+        .new-post-form {
+            background: var(--main-bg-color);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background: #0d1117;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            color: var(--text-color-primary);
+        }
+
+        .form-group textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Forum Sections */
+        .forum-section {
+            background: var(--main-bg-color);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: linear-gradient(to right, #1f6feb, #225ea4);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .forum-category {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .forum-category:last-child {
+            border-bottom: none;
+        }
+
+        /* Vote System */
+        .vote-system {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .vote-btn {
+            background: none;
+            border: none;
+            color: var(--text-color-secondary);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 5px;
+            transition: color 0.3s;
+        }
+
+        .vote-btn:hover {
+            color: var(--accent-color);
+        }
+
+        .vote-count {
+            font-weight: bold;
+            color: var(--text-color-primary);
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            background: #238636;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .category-info {
+            flex: 1;
+        }
+
+        .category-info h3 {
+            color: var(--text-color-light);
+            margin-bottom: 5px;
+        }
+
+        .category-info h3 a {
+            color: var(--text-color-light);
+            text-decoration: none;
+        }
+
+        .category-info p {
+            color: var(--text-color-secondary);
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .code-block {
+            background: #0d1117;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .code-block code {
+            color: var(--text-color-primary);
+            white-space: pre;
+        }
+
+        .category-stats {
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .category-stats div {
+            margin-bottom: 5px;
+        }
+
+        /* New Topic Button */
+        .new-topic-btn {
+            background: var(--accent-green);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 20px 0;
+            transition: background-color 0.3s;
+        }
+
+        .new-topic-btn:hover {
+            background: #2ea043;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2ea043;
+        }
+
+        .btn-secondary {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #c92d2a;
+        }
+
+        /* Sidebar */
+        .sidebar-section {
+            background: var(--main-bg-color);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-section h3 {
+            color: var(--text-color-light);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-info {
+            cursor: pointer;
+            transition: background-color 0.3s;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .profile-info:hover {
+            background: #1f242c;
+        }
+
+        .profile-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .online-users {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .user-badge {
+            background: #21262d;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .user-badge:hover {
+            transform: translateY(-2px);
+        }
+
+        .user-badge.owner {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        .sidebar-list {
+            list-style: none;
+        }
+
+        .sidebar-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background: var(--main-bg-color);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color-secondary);
+        }
+
+        .close-modal:hover {
+            color: var(--accent-red);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-header .profile-avatar {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            font-size: 30px;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .stat-item {
+            background: #1f242c;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-color-secondary);
+        }
+
+        @media (max-width: 768px) {
+    .forum-content {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+    }
+    .search-filters {
+        grid-template-columns: 1fr;
+    }
+    .main-nav ul {
+        flex-wrap: wrap;
+    }
+    .profile-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* EFEK HACKER GLOW BARU - TAMBAHKAN DI SINI */
+.hacker-glow {
+    position: relative;
+    display: inline-block;
+    color: var(--accent-color);
+    font-weight: bold;
+    text-shadow: 
+        0 0 10px var(--accent-color),
+        0 0 20px var(--accent-color),
+        0 0 30px var(--accent-color);
+    animation: hackerPulse 2s infinite alternate;
+}
+
+.hacker-glow::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #ff00ff;
+    z-index: -1;
+    animation: glitch-1 0.5s infinite;
+    text-shadow: 
+        0 0 5px #ff00ff,
+        0 0 15px #ff00ff;
+}
+
+.hacker-glow::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #00ffff;
+    z-index: -2;
+    animation: glitch-2 0.5s infinite;
+    text-shadow: 
+        0 0 5px #00ffff,
+        0 0 15px #00ffff;
+}
+
+@keyframes hackerPulse {
+    0% {
+        text-shadow: 
+            0 0 10px var(--accent-color),
+            0 0 20px var(--accent-color),
+            0 0 30px var(--accent-color);
+        transform: scale(1);
+    }
+    100% {
+        text-shadow: 
+            0 0 15px var(--accent-color),
+            0 0 30px var(--accent-color),
+            0 0 45px var(--accent-color),
+            0 0 60px #ff00ff;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes glitch-1 {
+    0%, 100% { transform: translate(0); opacity: 0.8; }
+    10% { transform: translate(-1px, -1px); opacity: 0.6; }
+    20% { transform: translate(1px, 1px); opacity: 0.4; }
+    30% { transform: translate(-1px, 1px); opacity: 0.6; }
+    40% { transform: translate(1px, -1px); opacity: 0.8; }
+    50% { transform: translate(-1px, -1px); opacity: 0.6; }
+    60% { transform: translate(1px, 1px); opacity: 0.4; }
+    70% { transform: translate(-1px, 1px); opacity: 0.6; }
+    80% { transform: translate(1px, -1px); opacity: 0.8; }
+    90% { transform: translate(-1px, -1px); opacity: 0.6; }
+}
+
+@keyframes glitch-2 {
+    0%, 100% { transform: translate(0); opacity: 0.8; }
+    10% { transform: translate(1px, 1px); opacity: 0.6; }
+    20% { transform: translate(-1px, -1px); opacity: 0.4; }
+    30% { transform: translate(1px, -1px); opacity: 0.6; }
+    40% { transform: translate(-1px, 1px); opacity: 0.8; }
+    50% { transform: translate(1px, 1px); opacity: 0.6; }
+    60% { transform: translate(-1px, -1px); opacity: 0.4; }
+    70% { transform: translate(1px, -1px); opacity: 0.6; }
+    80% { transform: translate(-1px, 1px); opacity: 0.8; }
+    90% { transform: translate(1px, 1px); opacity: 0.6; }
+}
+.terminal-text {
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(90deg, var(--accent-color), #ff00ff, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: terminalGradient 3s ease infinite;
+}
+
+@keyframes terminalGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+/* Admin Panel Styles */
+.admin-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-tab {
+    padding: 12px 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--text-color-secondary);
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.admin-tab.active {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.admin-panel {
+    display: none;
+}
+
+.admin-panel.active {
+    display: block;
+}
+
+.admin-form-group {
+    margin-bottom: 20px;
+}
+
+.admin-form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-color-light);
+}
+
+.admin-input, .admin-select, .admin-textarea {
+    width: 100%;
+    padding: 10px;
+    background: #0d1117;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    color: var(--text-color-primary);
+}
+
+.admin-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.admin-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.admin-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.admin-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.admin-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .admin-slider {
+    background-color: var(--accent-green);
+}
+
+input:checked + .admin-slider:before {
+    transform: translateX(26px);
+}
+
+.admin-btn {
+    background: var(--accent-green);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+.admin-btn:hover {
+    background: #2ea043;
+}
+
+.btn-danger {
+    background: var(--accent-red) !important;
+}
+
+.btn-danger:hover {
+    background: #c92d2a !important;
+}
+
+.admin-btn-small {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.admin-stats, .moderation-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.admin-stat, .mod-stat {
+    background: #1f242c;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.admin-stat-value, .mod-stat-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.admin-stat-label, .mod-stat-label {
+    font-size: 12px;
+    color: var(--text-color-secondary);
+}
+
+.system-info {
+    background: #1f242c;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-value.online {
+    color: var(--accent-green);
+}
+
+.user-actions, .admin-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+/* HAPUS animasi yang berat */
+.hacker-glow {
+    position: relative;
+    display: inline-block;
+    color: var(--accent-color);
+    font-weight: bold;
+    text-shadow: 0 0 10px var(--accent-color);
+    /* HAPUS animation: hackerPulse 2s infinite alternate; */
+}
+
+/* HAPUS keyframes yang berat */
+@keyframes hackerPulse { /* HAPUS */ }
+@keyframes glitch-1 { /* HAPUS */ }
+@keyframes glitch-2 { /* HAPUS */ }
+
+/* GANTI dengan efek sederhana */
+.hacker-glow:hover {
+    text-shadow: 0 0 15px var(--accent-color), 0 0 25px var(--accent-color);
+    transition: text-shadow 0.3s ease;
+}
+
+<!-- Tombol reset -->
+<button id="resetSettingsBtn" class></button>="btn btn-danger">Reset ke Default</button>
+
+<script>
+// Default settings
+const defaultSettings = {
+    forumName: "XploitNewbie Forum",
+    forumDesc: "Learn Ethical Hacking • Security Research • Bug Bounty",
+    maintenance: false,
+    registration: "Open Registration"
+};
+
+// Ambil settings dari localStorage
+function loadSettings() {
+    const saved = localStorage.getItem("forumSettings");
+    return saved ? JSON.parse(saved) : defaultSettings;
+}
+
+// Simpan settings ke localStorage
+function saveSettings(settings) {
+    localStorage.setItem("forumSettings", JSON.stringify(settings));
+}
+
+// Apply settings ke form
+function applySettings(settings) {
+    document.getElementById("forumName").value = settings.forumName;
+    document.getElementById("forumDesc").value = settings.forumDesc;
+    document.getElementById("maintenanceMode").checked = settings.maintenance;
+    document.getElementById("regStatus").value = settings.registration;
+}
+
+// Saat halaman diload → load data
+document.addEventListener("DOMContentLoaded", () => {
+    const settings = loadSettings();
+    applySettings(settings);
+});
+
+/* Badges Styling */
+.badges-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    background: var(--main-bg-color);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s;
+}
+
+.badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.badge.elite-hacker {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    color: #000;
+    border-color: gold;
+}
+
+.badge.bug-hunter {
+    background: var(--accent-green);
+    color: white;
+}
+
+/* Progress Bar */
+.reputation-bar {
+    margin-top: 15px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 5px 0;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-color), #ff00ff);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* Leaderboard */
+.leaderboard {
+    margin-top: 10px;
+}
+
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    margin: 5px 0;
+    background: var(--main-bg-color);
+    border-radius: 5px;
+    border-left: 3px solid var(--accent-color);
+}
+
+.leaderboard-item.rank-1 {
+    border-left-color: gold;
+    background: linear-gradient(90deg, rgba(255,215,0,0.1), transparent);
+}
+
+.leaderboard-item.rank-2 {
+    border-left-color: silver;
+}
+
+.leaderboard-item.rank-3 {
+    border-left-color: #cd7f32; /* bronze */
+}
+
+/* Notification Styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 5px;
+    color: white;
+    z-index: 10000;
+    animation: slideIn 0.3s ease;
+}
+
+.notification.success {
+    background: var(--accent-green);
+}
+
+.notification.achievement {
+    background: linear-gradient(45deg, var(--accent-color), #ff00ff);
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+    </style>
+</head>
+<body>
+    <!-- Tombol reset -->
+<button id="resetSettingsBtn" class="btn btn-danger">Reset ke Default</button>
+
+<script>
+// Default settings
+const defaultSettings = {
+    forumName: "XploitNewbie Forum",
+    forumDesc: "Learn Ethical Hacking • Security Research • Bug Bounty",
+    maintenance: false,
+    registration: "Open Registration"
+};
+
+// Ambil settings dari localStorage
+function loadSettings() {
+    const saved = localStorage.getItem("forumSettings");
+    return saved ? JSON.parse(saved) : defaultSettings;
+}
+
+// Simpan settings ke localStorage
+function saveSettings(settings) {
+    localStorage.setItem("forumSettings", JSON.stringify(settings));
+}
+
+// Apply settings ke form
+function applySettings(settings) {
+    document.getElementById("forumName").value = settings.forumName;
+    document.getElementById("forumDesc").value = settings.forumDesc;
+    document.getElementById("maintenanceMode").checked = settings.maintenance;
+    document.getElementById("regStatus").value = settings.registration;
+}
+
+// Saat halaman diload → load data
+document.addEventListener("DOMContentLoaded", () => {
+    const settings = loadSettings();
+    applySettings(settings);
+});
+
+// Tombol Save
+document.getElementById("saveSettingsBtn").addEventListener("click", () => {
+    const settings = {
+        forumName: document.getElementById("forumName").value,
+        forumDesc: document.getElementById("forumDesc").value,
+        maintenance: document.getElementById("maintenanceMode").checked,
+        registration: document.getElementById("regStatus").value
+    };
+    saveSettings(settings);
+    alert("✅ Forum settings saved!");
+});
+
+// Tombol Reset
+document.getElementById("resetSettingsBtn").addEventListener("click", () => {
+    if (confirm("Yakin mau reset ke default?")) {
+        saveSettings(defaultSettings);
+        applySettings(defaultSettings);
+        alert("🔄 Settings reset ke default.");
+    }
+});
+</script>
+    <!-- Tambahkan di header-right -->
+<div class="header-right">
+    Welcome, <strong><span class="hacker-glow" data-text="XploitNewbie">XploitNewbie</span></strong> 
+    <i class="fas fa-crown"></i> | 
+    <a href="#" id="adminPanelBtn"><i class="fas fa-shield-alt"></i> Admin Panel</a> |
+    <a href="#">Logout</a>
+</div>
+    <!-- Admin Settings Modal -->
+<div id="adminModal" class="modal">
+    <div class="modal-content" style="max-width: 800px;">
+        <span class="close-modal">&times;</span>
+        <h2><i class="fas fa-shield-alt"></i> <span class="hacker-glow" data-text="Admin Panel">Admin Panel</span></h2>
+        
+        <div class="admin-tabs">
+            <button class="admin-tab active" data-tab="forum">Forum Settings</button>
+            <button class="admin-tab" data-tab="users">User Management</button>
+            <button class="admin-tab" data-tab="content">Content Moderation</button>
+            <button class="admin-tab" data-tab="system">System</button>
+        </div>
+
+        <div class="admin-content">
+            <!-- Forum Settings -->
+            <div class="admin-panel active" id="forum-panel">
+                <h3><i class="fas fa-cog"></i> Forum Configuration</h3>
+                
+                <div class="admin-form-group">
+                    <label>Forum Name:</label>
+                    <input type="text" id="forumName" value="XploitNewbie Forum" class="admin-input">
+                </div>
+
+                <div class="admin-form-group">
+                    <label>Forum Description:</label>
+                    <input type="text" id="forumDescription" value="Learn Ethical Hacking • Security Research • Bug Bounty" class="admin-input">
+                </div>
+
+                <div class="admin-form-group">
+                    <label>Maintenance Mode:</label>
+                    <label class="admin-switch">
+                        <input type="checkbox" id="maintenanceMode">
+                        <span class="admin-slider"></span>
+                    </label>
+                    <span id="maintenanceStatus" style="color: var(--accent-green); margin-left: 10px;">● Online</span>
+                </div>
+
+                <div class="admin-form-group">
+                    <label>Registration Status:</label>
+                    <select id="registrationStatus" class="admin-select">
+                        <option value="open">Open Registration</option>
+                        <option value="invite">Invite Only</option>
+                        <option value="closed">Closed</option>
+                    </select>
+                </div>
+
+                <button class="admin-btn" onclick="saveForumSettings()">
+                    <i class="fas fa-save"></i> Save Forum Settings
+                </button>
+            </div>
+
+            <!-- User Management -->
+            <div class="admin-panel" id="users-panel">
+                <h3><i class="fas fa-users"></i> User Management</h3>
+                
+                <div class="admin-stats">
+                    <div class="admin-stat">
+                        <div class="admin-stat-value">1,247</div>
+                        <div class="admin-stat-label">Total Users</div>
+                    </div>
+                    <div class="admin-stat">
+                        <div class="admin-stat-value">23</div>
+                        <div class="admin-stat-label">Online Now</div>
+                    </div>
+                    <div class="admin-stat">
+                        <div class="admin-stat-value">5</div>
+                        <div class="admin-stat-label">Admins</div>
+                    </div>
+                </div>
+
+                <div class="admin-form-group">
+                    <label>Search User:</label>
+                    <input type="text" id="userSearch" placeholder="Enter username..." class="admin-input">
+                    <button class="admin-btn-small"><i class="fas fa-search"></i> Search</button>
+                </div>
+
+                <div class="user-actions">
+                    <button class="admin-btn" onclick="banUser()">
+                        <i class="fas fa-ban"></i> Ban User
+                    </button>
+                    <button class="admin-btn" onclick="promoteUser()">
+                        <i class="fas fa-star"></i> Promote to Admin
+                    </button>
+                    <button class="admin-btn" onclick="resetPassword()">
+                        <i class="fas fa-key"></i> Reset Password
+                    </button>
+                </div>
+            </div>
+
+            <!-- Content Moderation -->
+            <div class="admin-panel" id="content-panel">
+                <h3><i class="fas fa-edit"></i> Content Moderation</h3>
+                
+                <div class="moderation-stats">
+                    <div class="mod-stat">
+                        <div class="mod-stat-value">15</div>
+                        <div class="mod-stat-label">Pending Posts</div>
+                    </div>
+                    <div class="mod-stat">
+                        <div class="mod-stat-value">3</div>
+                        <div class="mod-stat-label">Reported Content</div>
+                    </div>
+                    <div class="mod-stat">
+                        <div class="mod-stat-value">127</div>
+                        <div class="mod-stat-label">Total Posts Today</div>
+                    </div>
+                </div>
+
+                <div class="admin-form-group">
+                    <label>Auto-Moderation:</label>
+                    <label class="admin-switch">
+                        <input type="checkbox" id="autoModeration" checked>
+                        <span class="admin-slider"></span>
+                    </label>
+                </div>
+
+                <div class="admin-form-group">
+                    <label>Word Filter:</label>
+                    <textarea id="bannedWords" class="admin-textarea">hack, crack, exploit, virus, malware</textarea>
+                    <small>Separate banned words with commas</small>
+                </div>
+
+                <button class="admin-btn" onclick="runContentScan()">
+                    <i class="fas fa-search"></i> Scan Content
+                </button>
+            </div>
+
+            <!-- System Settings -->
+            <div class="admin-panel" id="system-panel">
+                <h3><i class="fas fa-server"></i> System Information</h3>
+                
+                <div class="system-info">
+                    <div class="info-item">
+                        <span class="info-label">Server Status:</span>
+                        <span class="info-value online">● Running</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Database:</span>
+                        <span class="info-value">MySQL 8.0</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Storage Used:</span>
+                        <span class="info-value">2.3 GB / 10 GB</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Active Sessions:</span>
+                        <span class="info-value">18</span>
+                    </div>
+                </div>
+
+                <div class="admin-actions">
+                    <button class="admin-btn" onclick="clearCache()">
+                        <i class="fas fa-broom"></i> Clear Cache
+                    </button>
+                    <button class="admin-btn" onclick="backupDatabase()">
+                        <i class="fas fa-database"></i> Backup Database
+                    </button>
+                    <button class="admin-btn btn-danger" onclick="restartServer()">
+                        <i class="fas fa-power-off"></i> Restart Server
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="profile-header">
+    <div class="profile-avatar" style="border: 2px solid var(--accent-color); box-shadow: 0 0 30px var(--accent-color);">
+        <i class="fas fa-crown" style="text-shadow: 0 0 20px gold;"></i>
+    </div>
+    <h2><span class="hacker-glow" data-text="XploitNewbie">XploitNewbie</span></h2>
+    <p class="terminal-text">Forum Owner & Security Expert</p>
+    <span style="background: var(--accent-red); color: white; padding: 3px 10px; border-radius: 12px; font-size: 12px; animation: hackerPulse 2s infinite;">
+        <i class="fas fa-shield-alt"></i> <span class="hacker-glow" data-text="ADMIN">ADMIN</span>
+    </span>
+</div>
+
+<!-- Stats dengan layout yang lebih rapih -->
+<div style="text-align: center; margin: 20px 0;">
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; max-width: 400px; margin: 0 auto;">
+        <div style="text-align: center; background: #1f242c; padding: 15px; border-radius: 10px;">
+            <div style="color: var(--accent-color); font-weight: bold; font-size: 24px;">1,254</div>
+            <div style="font-size: 12px; color: var(--text-color-secondary);">Reputation</div>
+        </div>
+        <div style="text-align: center; background: #1f242c; padding: 15px; border-radius: 10px;">
+            <div style="color: var(--accent-green); font-weight: bold; font-size: 24px;">89</div>
+            <div style="font-size: 12px; color: var(--text-color-secondary);">Topics</div>
+        </div>
+        <div style="text-align: center; background: #1f242c; padding: 15px; border-radius: 10px;">
+            <div style="color: var(--accent-orange); font-weight: bold; font-size: 24px;">37</div>
+            <div style="font-size: 12px; color: var(--text-color-secondary);">Posts</div>
+        </div>
+    </div>
+</div>
+
+<!-- Profile Badges Section -->
+<div class="sidebar-section">
+    <h3><i class="fas fa-trophy"></i> Achievements</h3>
+    <div class="badges-container">
+        <div class="badge elite-hacker" data-badge="elite-hacker">
+            <i class="fas fa-crown"></i>
+            <span>Elite Hacker</span>
+        </div>
+        <div class="badge bug-hunter" data-badge="bug-bounty-hunter">
+            <i class="fas fa-bug"></i>
+            <span>Bug Hunter</span>
+        </div>
+        <!-- More badges... -->
+    </div>
+    <div class="reputation-bar">
+        <div class="level">Level 8</div>
+        <div class="progress-bar">
+            <div class="progress" style="width: 75%"></div>
+        </div>
+        <div class="points">1,254/2,000 points</div>
+    </div>
+</div>
+
+<!-- Leaderboard Section -->
+<div class="sidebar-section">
+    <h3><i class="fas fa-trophy"></i> Top Users</h3>
+    <div class="leaderboard">
+        <div class="leaderboard-item rank-1">
+            <span class="rank">🥇</span>
+            <span class="username">XploitNewbie</span>
+            <span class="points">1,254</span>
+        </div>
+        <div class="leaderboard-item rank-2">
+            <span class="rank">🥈</span>
+            <span class="username">SecurityExpert</span>
+            <span class="points">890</span>
+        </div>
+        <div class="leaderboard-item rank-3">
+            <span class="rank">🥉</span>
+            <span class="username">CodeMaster</span>
+            <span class="points">765</span>
+        </div>
+    </div>
+</div>
+
+<!-- Achievements -->
+<div style="background: #1f242c; padding: 20px; border-radius: 10px; margin: 20px 0;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+        <span style="font-weight: bold; font-size: 16px;">Achievements</span>
+        <span style="background: var(--accent-color); color: white; padding: 4px 12px; border-radius: 15px; font-size: 12px;">Level 8</span>
+    </div>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+        <span style="background: #238636; color: white; padding: 5px 12px; border-radius: 15px; font-size: 12px;">
+            <i class="fas fa-trophy"></i> Elite Hacker
+        </span>
+        <span style="background: #da3633; color: white; padding: 5px 12px; border-radius: 15px; font-size: 12px;">
+            <i class="fas fa-star"></i> Bug Bounty Hunter
+        </span>
+        <span style="background: #f78166; color: white; padding: 5px 12px; border-radius: 15px; font-size: 12px;">
+            <i class="fas fa-shield-alt"></i> Security Expert
+        </span>
+    </div>
+</div>
+
+<!-- Info Grid yang lebih rapih -->
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 20px 0;">
+    <div style="background: #1f242c; padding: 15px; border-radius: 8px;">
+        <div style="font-size: 12px; color: var(--text-color-secondary); margin-bottom: 5px;">Join Date</div>
+        <div style="font-weight: bold; font-size: 14px;">September 22, 2025</div>
+    </div>
+    <div style="background: #1f242c; padding: 15px; border-radius: 8px;">
+        <div style="font-size: 12px; color: var(--text-color-secondary); margin-bottom: 5px;">Last Active</div>
+        <div style="font-weight: bold; font-size: 14px;">Today, 14:30</div>
+    </div>
+    <div style="background: #1f242c; padding: 15px; border-radius: 8px;">
+        <div style="font-size: 12px; color: var(--text-color-secondary); margin-bottom: 5px;">Website</div>
+        <div style="font-weight: bold; color: var(--accent-color); font-size: 14px;">xploitnewbie.com</div>
+    </div>
+    <div style="background: #1f242c; padding: 15px; border-radius: 8px;">
+        <div style="font-size: 12px; color: var(--text-color-secondary); margin-bottom: 5px;">Location</div>
+        <div style="font-weight: bold; font-size: 14px;">Cyber Space</div>
+    </div>
+</div>
+
+<!-- Hapus bagian profile-stats yang duplikat -->
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <div class="stat-value">37</div>
+                    <div class="stat-label">Posts</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">89</div>
+                    <div class="stat-label">Topics</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">1,254</div>
+                    <div class="stat-label">Reputation</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn btn-primary" style="margin-right: 10px;">
+                    <i class="fas fa-envelope"></i> Send Message
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-user-plus"></i> Follow
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <header class="forum-header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-left">
+                    <i class="fas fa-shield-alt"></i> Dark Forum BY XploitNewbie 
+                </div>
+                <div class="header-right">
+    Welcome, <strong><span class="hacker-glow" data-text="XploitNewbie">XploitNewbie</span></strong> 
+    <i class="fas fa-crown" style="text-shadow: 0 0 10px gold;"></i> | 
+    <a href="#">Logout</a>
+</div>
+            </div>
+        </div>
+        
+        <div class="header-main">
+            <div class="container">
+                <div class="logo-section">
+    <h1><i class="fas fa-bug" style="text-shadow: 0 0 10px var(--accent-orange);"></i> 
+    <span class="hacker-glow" data-text="XploitNewbie Forum">XploitNewbie Forum</span></h1>
+    <p class="terminal-text">Learn Ethical Hacking • Security Research • Bug Bounty</p>
+</div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-list"></i> Categories</a></li>
+                        <li><a href="#"><i class="fas fa-users"></i> Members</a></li>
+                        <li><a href="#"><i class="fas fa-calendar"></i> Events</a></li>
+                        <li><a href="#"><i class="fas fa-download"></i> Resources</a></li>
+                        <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="#">XploitNewbie Forum</a> &raquo; <a href="#">Home</a>
+        </div>
+
+        <!-- Advanced Search -->
+        <div class="advanced-search">
+            <div class="search-header">
+                <h3><i class="fas fa-search"></i> Advanced Search</h3>
+                <div class="notification-bell">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </div>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search tutorials, tools, or discussions...">
+                <button class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
+            </div>
+            <div class="search-filters">
+                <select>
+                    <option>All Categories</option>
+                    <option>Security</option>
+                    <option>Programming</option>
+                </select>
+                <select>
+                    <option>All Authors</option>
+                    <option>XploitNewbie</option>
+                    <option>SecurityExpert</option>
+                </select>
+                <select>
+                    <option>Any Date</option>
+                    <option>Today</option>
+                    <option>This Week</option>
+                </select>
+                <select>
+                    <option>All Types</option>
+                    <option>Tutorials</option>
+                    <option>Questions</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="forum-content">
+            <div class="main-content" id="main-content">
+                <!-- New Post Form -->
+                <div class="new-post-form" id="new-post-form">
+                    <h3><i class="fas fa-plus"></i> Create New Topic</h3>
+                    <form id="post-form">
+                        <div class="form-group">
+                            <label for="post-title">Title:</label>
+                            <input type="text" id="post-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="post-category">Category:</label>
+                            <select id="post-category">
+                                <option value="security">Security & Penetration Testing</option>
+                                <option value="programming">Programming & Development</option>
+                                <option value="announcements">Important Announcements</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <labelfor="post-content">Content:</label>
+                            <textarea id="post-content" required></textarea>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> Post Topic
+                            </button>
+                            <button type="button" id="cancel-post" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- New Topic Button -->
+                <button class="new-topic-btn" id="new-topic-btn">
+                    <i class="fas fa-plus"></i> New Topic
+                </button>
+
+                <!-- Forum Sections -->
+                <div class="forum-section">
+                    <div class="section-header">
+                        <span><i class="fas fa-bullhorn"></i> Important Announcements</span>
+                        <span>1 Post</span>
+                    </div>
+                    <div class="forum-category">
+                        <div class="category-icon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="category-info">
+                            <h3><a href="#">Forum Rules & Guidelines</a></h3>
+                            <p>Please read before posting. Last post by <strong>XploitNewbie</strong></p>
+                        </div>
+                        <div class="category-stats">
+                            <div>1 Topic</div>
+                            <div>15 Views</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="forum-section">
+                    <div class="section-header">
+                        <span><i class="fas fa-code"></i> Programming & Development</span>
+                        <span>24 Posts</span>
+                    </div>
+                    <div class="forum-category">
+                        <div class="category-icon">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        <div class="category-info">
+                            <h3><a href="#">Python for Security</a></h3>
+                            <p>Python scripts, tools, and automation for security testing</p>
+                        </div>
+                        <div class="category-stats">
+                            <div>12 Topics</div>
+                            <div>245 Views</div>
+                        </div>
+                    </div>
+                    <div class="forum-category">
+                        <div class="category-icon">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <div class="category-info">
+                            <h3><a href="#">Web Security & JavaScript</a></h3>
+                            <p>XSS, CSRF, and client-side security techniques</p>
+                        </div>
+                        <div class="category-stats">
+                            <div>8 Topics</div>
+                            <div>187 Views</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Section -->
+                <div class="forum-section" id="security-section">
+                    <div class="section-header">
+                        <span><i class="fas fa-shield-alt"></i> Security & Penetration Testing</span>
+                        <span>42 Posts</span>
+                    </div>
+
+                    <!-- Network Security Post -->
+                    <div class="forum-category">
+                        <div class="vote-system">
+                            <button class="vote-btn"><i class="fas fa-arrow-up"></i></button>
+                            <div class="vote-count">24</div>
+                            <button class="vote-btn"><i class="fas fa-arrow-down"></i></button>
+                        </div>
+
+                        <div class="category-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+
+                        <div class="category-info">
+                            <h3><a href="#">Network Security Tools Comparison</a></h3>
+                            <p>Complete analysis of popular network security tools</p>
+                            
+                            <div class="code-block">
+                                <code>Complete analysis of popular network security tools</code>
+                            </div>
+                        </div>
+
+                        <div class="category-stats">
+                            <div>15 Topics</div>
+                            <div>320 Views</div>
+                        </div>
+                    </div>
+
+                    <!-- Cryptography Post -->
+                    <div class="forum-category">
+                        <div class="vote-system">
+                            <button class="vote-btn"><i class="fas fa-arrow-up"></i></button>
+                            <div class="vote-count">18</div>
+                            <button class="vote-btn"><i class="fas fa-arrow-down"></i></button>
+                        </div>
+
+                        <div class="category-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+
+                        <div class="category-info">
+                            <h3><a href="#">Cryptography & Encryption</a></h3>
+                            <p>Encryption algorithms, hashing, and cryptographic attacks</p>
+                        </div>
+
+                        <div class="category-stats">
+                            <div>9 Topics</div>
+                            <div>198 Views</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-user-circle"></i> Profile Owner</h3>
+                    <div class="profile-info" id="profile-info">
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <div class="profile-avatar" style="border: 2px solid var(--accent-color); box-shadow: 0 0 15px var(--accent-color);">
+            <i class="fas fa-crown" style="text-shadow: 0 0 10px gold;"></i>
+        </div>
+        <div>
+            <strong><span class="hacker-glow" data-text="XploitNewbie">XploitNewbie</span></strong><br>
+            <span style="color: var(--text-color-secondary); font-size: 14px;">Forum Owner</span>
+        </div>
+    </div>
+    <div style="margin-top: 10px; font-size: 14px;">
+        <div><i class="fas fa-envelope"></i> Posts: <span class="terminal-text">37</span></div>
+        <div><i class="fas fa-calendar"></i> Joined: <span class="terminal-text">September 2025</span></div>
+    </div>
+</div>
+</div>
+                        <div style="margin-top: 10px; font-size: 14px;">
+                            <div><i class="fas fa-envelope"></i> Posts: 37</div>
+                            <div><i class="fas fa-calendar"></i> Joined: September 2025</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-users"></i> Online Users</h3>
+                    <div class="online-users">
+                        <div class="user-badge owner" data-user="XploitNewbie" style="box-shadow: 0 0 15px var(--accent-red);">
+    <i class="fas fa-crown" style="text-shadow: 0 0 10px gold;"></i> 
+    <span class="hacker-glow" data-text="XploitNewbie">XploitNewbie</span>
+</div>
+                        <div class="user-badge" data-user="SecurityExpert">
+                            <i class="fas fa-user"></i> SecurityExpert
+                        </div>
+                        <div class="user-badge" data-user="CodeMaster">
+                            <i class="fas fa-user"></i> CodeMaster
+                        </div>
+                        <div class="user-badge" data-user="BugHunter">
+                            <i class="fas fa-user"></i> BugHunter
+                        </div>
+                        <div class="user-badge" data-user="Pentester">
+                            <i class="fas fa-user"></i> Pentester
+                        </div>
+                    </div>
+                    <p style="font-size: 12px; color: var(--text-color-secondary); margin-top: 10px;">
+                        6 users online (1 owner, 5 members)
+                    </p>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-fire"></i> Latest Post</h3>
+                    <p style="font-size: 14px;">
+                         XPLOITNEWBIE!!!
+                    </p>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-link"></i> Quick Links</h3>
+                    <ul class="sidebar-list">
+                        <li><a href="#"><i class="fas fa-book"></i> Tutorials</a></li>
+                        <li><a href="#"><i class="fas fa-tools"></i> Tools</a></li>
+                        <li><a href="#"><i class="fas fa-download"></i> Downloads</a></li>
+                        <li><a href="#"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Element references
+            const newTopicBtn = document.getElementById('new-topic-btn');
+            const mainContent = document.getElementById('main-content');
+            const newPostForm = document.getElementById('new-post-form');
+            const cancelPostBtn = document.getElementById('cancel-post');
+            const postForm = document.getElementById('post-form');
+            const securitySection = document.getElementById('security-section');
+            const profileModal = document.getElementById('profileModal');
+            const profileInfo = document.getElementById('profile-info');
+            const closeModal = document.querySelector('.close-modal');
+
+            // New Topic Button
+            newTopicBtn.addEventListener('click', function() {
+                const forumSections = mainContent.querySelectorAll('.forum-section');
+                forumSections.forEach(section => {
+                    section.style.display = 'none';
+                });
+                newPostForm.style.display = 'block';
+                newTopicBtn.style.display = 'none';
+            });
+
+            // Cancel Post Button
+            cancelPostBtn.addEventListener('click', function() {
+                newPostForm.style.display = 'none';
+                const forumSections = mainContent.querySelectorAll('.forum-section');
+                forumSections.forEach(section => {
+                    section.style.display = 'block';
+                });
+                newTopicBtn.style.display = 'block';
+            });
+
+            // Post Form
+            postForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const postTitle = document.getElementById('post-title').value;
+                const postContent = document.getElementById('post-content').value;
+                
+                const newPostElement = document.createElement('div');
+                newPostElement.className = 'forum-category';
+                newPostElement.innerHTML = `
+                    <div class="vote-system">
+                        <button class="vote-btn"><i class="fas fa-arrow-up"></i></button>
+                        <div class="vote-count">0</div>
+                        <button class="vote-btn"><i class="fas fa-arrow-down"></i></button>
+                    </div>
+                    <div class="category-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3><a href="#">${postTitle}</a></h3>
+                        <p>${postContent.substring(0, 50)}...</p>
+                    </div>
+                    <div class="category-stats">
+                        <div>1 Topic</div>
+                        <div>0 Views</div>
+                    </div>
+                `;
+                
+                securitySection.appendChild(newPostElement);
+                postForm.reset();
+                newPostForm.style.display = 'none';
+                mainContent.querySelectorAll('.forum-section').forEach(section => {
+                    section.style.display = 'block';
+                });
+                newTopicBtn.style.display = 'block';
+                alert('Topic posted successfully!');
+            });
+
+            // Profile Modal
+            profileInfo.addEventListener('click', function() {
+                profileModal.style.display = 'block';
+            });
+
+            closeModal.addEventListener('click', function() {
+                profileModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target === profileModal) {
+                    profileModal.style.display = 'none';
+                }
+            });
+
+            // User badges
+            document.querySelectorAll('.user-badge').forEach(badge => {
+                badge.addEventListener('click', function() {
+                    const userName = this.getAttribute('data-user');
+                    if (userName === 'XploitNewbie') {
+                        profileModal.style.display = 'block';
+                    } else {
+                        alert(`Profile of ${userName} would be displayed here.`);
+                    }
+                });
+            });
+
+            // Vote System
+            document.querySelectorAll('.vote-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const voteSystem = this.closest('.vote-system');
+                    const voteCount = voteSystem.querySelector('.vote-count');
+                    let count = parseInt(voteCount.textContent);
+                    
+                    if (this.querySelector('.fa-arrow-up')) {
+                        count++;
+                    } else {
+                        count--;
+                    }
+                    
+                    voteCount.textContent = count;
+                });
+            });
+
+            // Notifications
+            // Admin Panel Functionality
+document.getElementById('adminPanelBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('adminModal').style.display = 'block';
+});
+
+// Tab switching
+document.querySelectorAll('.admin-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+        // Remove active class from all tabs and panels
+        document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding panel
+        this.classList.add('active');
+        const panelId = this.getAttribute('data-tab') + '-panel';
+        document.getElementById(panelId).classList.add('active');
+    });
+});
+
+// Admin functions
+function saveForumSettings() {
+    const forumName = document.getElementById('forumName').value;
+    const forumDesc = document.getElementById('forumDescription').value;
+    
+    document.querySelector('.logo-section h1').innerHTML = 
+        `<i class="fas fa-bug"></i> <span class="hacker-glow" data-text="${forumName}">${forumName}</span>`;
+    document.querySelector('.logo-section p').textContent = forumDesc;
+    
+    alert('Forum settings saved successfully!');
+}
+
+function banUser() {
+    const username = prompt('Enter username to ban:');
+    if (username) {
+        alert(`User ${username} has been banned.`);
+    }
+}
+
+function promoteUser() {
+    const username = prompt('Enter username to promote to admin:');
+    if (username) {
+        alert(`User ${username} is now an administrator.`);
+    }
+}
+
+function runContentScan() {
+    alert('Content scan completed! No issues found.');
+}
+
+function clearCache() {
+    alert('Cache cleared successfully!');
+}
+
+function backupDatabase() {
+    alert('Database backup created successfully!');
+}
+
+function restartServer() {
+    if (confirm('Are you sure you want to restart the server?')) {
+        alert('Server restarting...');
+    }
+}
+            document.querySelector('.notification-bell').addEventListener('click', function() {
+                alert('You have 3 new notifications!');
+            });
+        });
+        
+        // === SISTEM PENGAMANAN ADMIN PANEL ===
+
+// 1. Data user current (simulasi)
+const currentUser = {
+    username: "XploitNewbie",
+    role: "admin", // "admin", "moderator", "user"
+    isAdmin: true,
+    lastLogin: new Date().toISOString()
+};
+
+// 2. Role-based permissions
+const permissions = {
+    admin: ['manage_users', 'manage_posts', 'system_settings', 'view_reports', 'ban_users', 'edit_forum_settings'],
+    moderator: ['manage_posts', 'view_reports'],
+    user: ['view_posts', 'create_posts']
+};
+
+// 3. Cek permission
+function hasPermission(action) {
+    return permissions[currentUser.role]?.includes(action) || false;
+}
+
+// 4. Verifikasi akses admin
+function verifyAdminAccess() {
+    if (currentUser.role !== "admin") {
+        const password = prompt("🔐 Enter Admin Password:");
+        if (password !== "admin123") {
+            alert("⛔ Access Denied! Invalid admin credentials.");
+            return false;
+        }
+        // Jika password benar, beri akses sementara
+        currentUser.role = "admin";
+        currentUser.isAdmin = true;
+    }
+    return true;
+}
+
+// 5. Session management
+function setupAdminSession() {
+    const adminSession = {
+        user: currentUser.username,
+        role: currentUser.role,
+        loginTime: new Date().toISOString(),
+        expires: Date.now() + (2 * 60 * 60 * 1000) // 2 jam
+    };
+    localStorage.setItem('adminSession', JSON.stringify(adminSession));
+}
+
+function checkAdminSession() {
+    const sessionData = localStorage.getItem('adminSession');
+    if (!sessionData) return false;
+    
+    const session = JSON.parse(sessionData);
+    if (Date.now() > session.expires) {
+        localStorage.removeItem('adminSession');
+        alert("Session expired. Please login again.");
+        return false;
+    }
+    return true;
+}
+
+// 6. Inisialisasi saat page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Sembunyikan tombol admin jika bukan admin
+    const adminBtn = document.getElementById('adminPanelBtn');
+    
+    if (currentUser.role !== "admin" && !currentUser.isAdmin) {
+        adminBtn.style.display = 'none';
+    }
+    
+    // Setup session untuk admin
+    if (currentUser.role === "admin") {
+        setupAdminSession();
+    }
+});
+
+// 7. Event listener untuk Admin Panel dengan pengamanan
+document.getElementById('adminPanelBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    // Cek session dan permission
+    if (!checkAdminSession() || !verifyAdminAccess()) {
+        return;
+    }
+    
+    // Sembunyikan panel yang tidak diizinkan
+    if (!hasPermission('system_settings')) {
+        document.querySelector('[data-tab="system"]').style.display = 'none';
+    }
+    if (!hasPermission('manage_users')) {
+        document.querySelector('[data-tab="users"]').style.display = 'none';
+    }
+    
+    document.getElementById('adminModal').style.display = 'block';
+});
+
+// 8. Logout function
+function adminLogout() {
+    localStorage.removeItem('adminSession');
+    currentUser.role = "user";
+    currentUser.isAdmin = false;
+    document.getElementById('adminPanelBtn').style.display = 'none';
+    alert("Admin session ended.");
+}
+
+// GANTI kode panjang dengan yang lebih sederhana
+const adminCheck = {
+    isAdmin: true,
+    hasAccess: function() {
+        return this.isAdmin && localStorage.getItem('adminAuth') === 'true';
+    }
+};
+
+// Simplifikasi event listeners
+function initAdminPanel() {
+    const adminBtn = document.getElementById('adminPanelBtn');
+    if (!adminCheck.hasAccess()) {
+        adminBtn.style.display = 'none';
+        return;
+    }
+    
+    adminBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('adminModal').style.display = 'block';
+    });
+}
+
+// GANTI banyak event listeners dengan satu
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('vote-btn')) {
+        const voteSystem = e.target.closest('.vote-system');
+        const voteCount = voteSystem.querySelector('.vote-count');
+        let count = parseInt(voteCount.textContent);
+        count += e.target.classList.contains('fa-arrow-up') ? 1 : -1;
+        voteCount.textContent = count;
+    }
+    
+    if (e.target.classList.contains('user-badge')) {
+        const userName = e.target.getAttribute('data-user');
+        if (userName === 'XploitNewbie') {
+            document.getElementById('profileModal').style.display = 'block';
+        }
+    }
+});
+
+// Satu fungsi untuk semua modal
+function handleModals() {
+    const modals = {
+        profile: document.getElementById('profileModal'),
+        admin: document.getElementById('adminModal'),
+        login: document.getElementById('loginModal')
+    };
+    
+    document.addEventListener('click', function(e) {
+        // Close modal
+        if (e.target.classList.contains('close-modal') || e.target.classList.contains('modal')) {
+            Object.values(modals).forEach(modal => {
+                if (modal) modal.style.display = 'none';
+            });
+        }
+        
+        // Open modal
+        if (e.target.id === 'adminPanelBtn') {
+            modals.admin.style.display = 'block';
+        }
+        if (e.target.id === 'profile-info') {
+            modals.profile.style.display = 'block';
+        }
+    });
+}
+
+// Tambahkan ini di bagian paling bawah script
+const closeButtons = document.querySelectorAll('.close-modal');
+closeButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+        this.closest('.modal').style.display = 'none';
+    });
+});
+
+// Tutup modal ketika klik di luar konten
+const modals = document.querySelectorAll('.modal');
+modals.forEach(modal => {
+    modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.style.display = 'none';
+        }
+    });
+});
+
+function saveForumSettings() {
+    const forumName = document.getElementById('forumName').value;
+    const forumDesc = document.getElementById('forumDesc').value;
+    const maintenance = document.getElementById('maintenanceToggle').checked;
+    const regStatus = document.getElementById('registrationStatus').value;
+
+    const settings = {
+        forumName,
+        forumDesc,
+        maintenance,
+        regStatus
+    };
+
+    localStorage.setItem("forumSettings", JSON.stringify(settings));
+    alert("✅ Forum settings saved successfully!");
+}
+
+// Saat halaman dibuka, load dari localStorage
+document.addEventListener("DOMContentLoaded", function() {
+    const saved = localStorage.getItem("forumSettings");
+    if (saved) {
+        const settings = JSON.parse(saved);
+        document.getElementById('forumName').value = settings.forumName;
+        document.getElementById('forumDesc').value = settings.forumDesc;
+        document.getElementById('maintenanceToggle').checked = settings.maintenance;
+        document.getElementById('registrationStatus').value = settings.regStatus;
+    }
+});
+
+// 
+
+// Integrasi Prism.js atau Highlight.js
+function highlightCode() {
+    document.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightElement(block);
+    });
+}
+
+// userReputation.js
+const userReputation = {
+    "XploitNewbie": {
+        points: 1254,
+        level: 8,
+        badges: ["elite-hacker", "bug-bounty-hunter", "security-expert"],
+        activity: {
+            posts: 37,
+            topics: 89,
+            solutions: 15,
+            likesReceived: 245,
+            reports: 3
+        }
+    },
+    "SecurityExpert": {
+        points: 890,
+        level: 6,
+        badges: ["contributor", "mentor"],
+        activity: {
+            posts: 25,
+            topics: 34,
+            solutions: 8,
+            likesReceived: 167,
+            reports: 1
+        }
+    }
+};
+
+// reputationRules.js
+const REPUTATION_RULES = {
+    CREATE_TOPIC: 10,
+    CREATE_POST: 5,
+    SOLUTION_ACCEPTED: 20,
+    POST_LIKED: 2,
+    REPORT_ACCEPTED: 15,
+    DAILY_LOGIN: 1,
+    BADGE_EARNED: 50
+};
+
+function calculateReputation(userAction) {
+    const user = userReputation[currentUser];
+    user.points += REPUTATION_RULES[userAction];
+    user.activity[userAction.toLowerCase()]++;
+    checkLevelUp(user);
+    checkBadgeEligibility(user);
+}
+
+// badges.js
+const BADGES = {
+    "newbie": { 
+        name: "Newbie", 
+        requirement: "First post", 
+        icon: "fas fa-seedling",
+        color: "#8b949e"
+    },
+    "contributor": { 
+        name: "Contributor", 
+        requirement: "10+ posts", 
+        icon: "fas fa-pencil-alt",
+        color: "#58a6ff"
+    },
+    "expert": { 
+        name: "Security Expert", 
+        requirement: "50+ posts, 100+ reputation", 
+        icon: "fas fa-shield-alt",
+        color: "#f78166"
+    },
+    "elite-hacker": { 
+        name: "Elite Hacker", 
+        requirement: "Top 10 reputation", 
+        icon: "fas fa-crown",
+        color: "#ffd700"
+    },
+    "bug-bounty-hunter": { 
+        name: "Bug Bounty Hunter", 
+        requirement: "5 accepted solutions", 
+        icon: "fas fa-bug",
+        color: "#3fb950"
+    },
+    "mentor": { 
+        name: "Community Mentor", 
+        requirement: "Help 20+ users", 
+        icon: "fas fa-hands-helping",
+        color: "#da3633"
+    }
+};
+
+// reputationSystem.js
+class ReputationSystem {
+    constructor() {
+        this.users = JSON.parse(localStorage.getItem('userReputation')) || userReputation;
+    }
+
+    // Add points for user action
+    addPoints(username, action) {
+        if (this.users[username]) {
+            const points = REPUTATION_RULES[action];
+            this.users[username].points += points;
+            
+            // Update activity count
+            this.users[username].activity[action.toLowerCase()]++;
+            
+            this.saveToStorage();
+            this.checkAchievements(username);
+        }
+    }
+
+    // Check for level up
+    checkLevelUp(user) {
+        const newLevel = Math.floor(user.points / 100) + 1;
+        if (newLevel > user.level) {
+            user.level = newLevel;
+            this.showLevelUpNotification(newLevel);
+        }
+    }
+
+    // Check badge eligibility
+    checkBadgeEligibility(user) {
+        const badgesToCheck = Object.keys(BADGES);
+        
+        badgesToCheck.forEach(badgeKey => {
+            if (!user.badges.includes(badgeKey) && this.qualifiesForBadge(user, badgeKey)) {
+                user.badges.push(badgeKey);
+                this.showBadgeNotification(badgeKey);
+            }
+        });
+    }
+
+    // Badge qualification logic
+    qualifiesForBadge(user, badgeKey) {
+        const activity = user.activity;
+        
+        switch(badgeKey) {
+            case 'newbie':
+                return activity.posts >= 1;
+            case 'contributor':
+                return activity.posts >= 10;
+            case 'expert':
+                return activity.posts >= 50 && user.points >= 100;
+            case 'elite-hacker':
+                return this.getUserRank(user.username) <= 10;
+            case 'bug-bounty-hunter':
+                return activity.solutions >= 5;
+            case 'mentor':
+                return activity.solutions >= 20;
+            default:
+                return false;
+        }
+    }
+
+    // Get user rank
+    getUserRank(username) {
+        const sortedUsers = Object.entries(this.users)
+            .sort((a, b) => b[1].points - a[1].points);
+        
+        return sortedUsers.findIndex(([user]) => user === username) + 1;
+    }
+
+    // Show notifications
+    showLevelUpNotification(level) {
+        this.showNotification(`🎉 Level Up! You reached level ${level}`, 'success');
+    }
+
+    showBadgeNotification(badgeKey) {
+        const badge = BADGES[badgeKey];
+        this.showNotification(`🏆 Badge Unlocked: ${badge.name}`, 'achievement');
+    }
+
+    showNotification(message, type) {
+        // Create toast notification
+        const toast = document.createElement('div');
+        toast.className = `notification ${type}`;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    saveToStorage() {
+        localStorage.setItem('userReputation', JSON.stringify(this.users));
+    }
+}
+
+// Initialize system
+const reputationSystem = new ReputationSystem();
+
+// Integrasi dengan posting system yang sudah ada
+postForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    // Existing code...
+    
+    // Add reputation points
+    reputationSystem.addPoints(currentUser.username, 'CREATE_TOPIC');
+    
+    // Continue with existing logic...
+});
+
+// Integrasi dengan voting system
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('vote-btn')) {
+        // Existing voting logic...
+        
+        // Add reputation for receiving likes
+        if (e.target.classList.contains('fa-arrow-up')) {
+            const postAuthor = e.target.closest('.forum-category').querySelector('.username');
+            reputationSystem.addPoints(postAuthor.textContent, 'POST_LIKED');
+        }
+    }
+});
+    </script>
+</body>
+</html>
